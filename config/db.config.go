@@ -16,7 +16,7 @@ func Init() *gorm.DB {
 		log.Fatal(err)
 	}
 
-	db.AutoMigrate(&models.Book{Isbn: 1118, Title: "The International Enc", Publisher: "Wiley Blackwell", Published_year: 2017, Synopsis: "The International Encyclopedia"})
+	db.AutoMigrate(&models.Book{})
 	log.Println("Database migration completed!")
 	return db
 }
