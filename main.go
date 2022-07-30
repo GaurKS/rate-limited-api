@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -21,5 +23,21 @@ func main() {
 	{
 		routes.Router(r.Group("/v1"), &h)
 	}
-	router.Run(os.Getenv("PORT"))
+
+	// get the port
+	port, err := getPort()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	router.Run(port)
+}
+
+func getPort() (string, error) {
+	// the PORT is supplied by Heroku
+	port := os.Getenv("PORT")
+	if port == "" {
+		return "", fmt.Errorf("$PORT not set")
+	}
+	return ":" + port, nil
 }
