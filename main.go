@@ -21,5 +21,5 @@ func main() {
 	{
 		routes.Router(r.Group("/v1"), &h)
 	}
-	router.Run(os.Getenv("LOCAL_PORT"))
+	router.Run(os.Getenv("PORT"))
 }
