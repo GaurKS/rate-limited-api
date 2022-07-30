@@ -10,7 +10,7 @@ import (
 )
 
 var _ipMap = make(map[string]*rateLimiter.Bucket) // used for checking IP spamming
-const MAX_LIMIT = 2                               // max limit to api call
+const MAX_LIMIT = 5                               // max limit to api call
 
 func RateLimit(c *gin.Context) {
 	ip := c.ClientIP()

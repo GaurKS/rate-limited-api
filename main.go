@@ -1,25 +1,22 @@
 package main
 
 import (
-	"log"
+	"net/http"
 	"os"
 
 	db "github.com/GaurKS/book-api/config"
 	"github.com/GaurKS/book-api/routes"
 	"github.com/GaurKS/book-api/services"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	DB := db.Init()
 	h := services.New(DB)
 	router := gin.Default()
+	router.GET("/favicon.ico", func(c *gin.Context) {
+		c.JSON(http.StatusOK, "")
+	})
 	r := router.Group("/api")
 	{
 		routes.Router(r.Group("/v1"), &h)
