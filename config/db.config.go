@@ -10,13 +10,13 @@ import (
 )
 
 func Init() *gorm.DB {
-	db, err := gorm.Open(postgres.Open(os.Getenv("DB_URL")), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(os.Getenv("HEROKU_DB_URL")), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	db.AutoMigrate(&models.Book{Isbn: 1118, Title: "The International Enc", Publisher: "Wiley Blackwell", Published_year: 2017, Synopsis: "The International Encyclopedia"})
+	db.AutoMigrate(&models.Book{})
 	log.Println("Database migration completed!")
 	return db
 }

@@ -8,4 +8,5 @@ import (
 
 func Router(r *gin.RouterGroup, h *services.Handler) {
 	r.GET("/book/:isbn", middleware.RateLimit, h.GetByIsbn)
+	r.POST("/create", h.CreateBook)
 }
